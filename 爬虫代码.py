@@ -73,15 +73,15 @@ if __name__ == '__main__':
     print("首页获取完毕！")
     time.sleep(3)
 
-    for i in range(1,int(number)+1):
+    for i in range(1,int(number)/10+1):
         html = Get_html(keyword,i*10)
         URL = Get_URL(html)
         for u in URL:
             #print(u)
             [ask,answer] = Get_info(u)
-            with open('记录.txt','a',encoding='utf-8') as f:
-                f.write(ask+"\n"+answer+"\n\n")
-                f.close()
+            if len(ask) > 1:
+                with open('记录.txt','a',encoding='utf-8') as f:
+                    f.write(ask+"\n"+answer+"\n\n")
             time.sleep(1)
         print("第" + str(i+1) + "页获取完毕！")
         time.sleep(3)
